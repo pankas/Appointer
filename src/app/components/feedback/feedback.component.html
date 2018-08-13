@@ -1,0 +1,31 @@
+<div class="back">
+    <div class="col-sm-12">
+        <div class="col-sm-1"></div>
+        <div class="a col-sm-10">
+            <br>
+            <br>
+            <div class="card text-center" style="border-radius:10px">
+                <div class="card-body">
+                    <h1 class="hr1">Give Your FeedBack</h1>
+                    <hr style="margin-top:0">
+                    <div style="text-align:left">
+                    	<form id="feedform"
+                    	#feedbackForm = ngForm
+                    	(ngSubmit)='onSubmit(feedbackForm)'>
+                        <!-- <label for="">Username :</label> -->
+                        <textarea class="form-control" name="feedback" ngModel style="height: 150px" placeholder="Enter Your Valuable Suggestions/ Feedback. What do you think about the app"></textarea>
+                        <br>
+                        
+                        <div style="text-align:center">
+                            <button class="btn sbmBtn">Send Feedback</button>
+                            
+                        </div>
+                    </form>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <div class="card text-center" style="border-radius:10px; width:60%; margin: 2px auto;" *ngFor=" let msg of feedbackArr " >{{msg.feedback}}</div>
+
+        </div>
+    </div>

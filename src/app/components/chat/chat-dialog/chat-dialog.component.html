@@ -1,0 +1,34 @@
+<div id="header">	
+<h1 align="center">
+	Customer Support
+</h1>
+<div class="headerLine"></div>
+
+
+
+</div>
+<div class="chatmsg">
+<ng-container *ngFor="let message of messages | async">
+	<div class="message" [ngClass] = "{'from': message.sentBy === 'bot', 'to': message.sentBy === 'user'}">
+
+	{{ message.content }}
+	
+	<div style="font-size: 5px; display:inline; float:right;">{{ now | date:'shortTime' }}</div>
+		<br>
+	</div>
+	
+	
+	
+	
+</ng-container>
+<div></div>
+<br><br><br>
+<div id="a"></div>
+</div>
+<div class="chat">
+
+<input placeholder="Send Message" [(ngModel)]="formValue" (keyup.enter)="sendMessage()" type="text">
+
+<span (click)="sendMessage()"><i class="fas fa-paper-plane" style="color:#09203f; font-size: 20px margin-left:2px;"></i></span>
+</div>
+<!-- </div> -->

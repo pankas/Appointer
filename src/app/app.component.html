@@ -1,0 +1,23 @@
+<div class="container">
+  <side-bar [open]="open" #sideBar></side-bar>
+  <div  class="main-content" style="height:100%;overflow: auto">
+    <div class="swipe-area" [class.swipe-area-open]="sideBar.open" (swipeleft)="swipe('swipeleft')" (swiperight)="swipe('swiperight')"></div>
+    <div style="background:linear-gradient(to bottom , #09203f, #1d4a6d  )">
+      <div style="z-index:2500">
+        <div style="display:inline-block;" (click)="open = !open">
+          <i style="color:white;font-size:25px;margin:15px" class="fas fa-bars"></i>
+        </div>
+        <span style="color:white;position: absolute;top: 13px;font-size:20px">
+          <a routerlink='/home'> Appointer </a>
+        </span>
+        <span class="glyphicon glyphicon-user" (click)="toProfile()" style="color:white;float:right;top:9px;right:9px;border-radius:50%;border:1px solid white;padding:10px;"></span>
+      </div>
+    </div>
+    <div >
+      <div class="loader" *ngIf="ls.Loader" style="margin:auto" ></div>
+    </div>
+    <div class="content" style="height:100%;">
+      <router-outlet> </router-outlet>
+    </div>
+  </div>
+</div>

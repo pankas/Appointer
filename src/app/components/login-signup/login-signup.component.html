@@ -1,0 +1,49 @@
+<div class="back">
+    <div class="col-sm-12">
+        <div class=" a col-sm-10">
+            <br>
+            <br>
+            <div class="card text-center">
+                <div class="card-body" *ngIf="loginCheck">
+                    <h1 class="hr1">Login</h1>
+                    <hr style="margin-top:0">
+                    <div style="text-align:left">
+                        <input type="text" [(ngModel)]="loginForm.username" class="form-control" placeholder="Email/ Phone Number">
+                        <br>
+                        <input type="password" class="form-control" [(ngModel)]="loginForm.password" placeholder="Password">
+                        <br>
+                        <div style="text-align:center">
+                            <button (click)="login()" class="btn sbmBtn">Submit</button>
+                            <br>
+                            <a> Forgot Password? </a>
+                            <br>
+                            <a (click)="loginCheck = false"> Create New Account </a>
+                            <p>{{message}}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-body" *ngIf="!loginCheck">
+                    <h1 class="hr1">Sign Up</h1>
+                    <hr style="margin-top:0">
+                    <div style="text-align:left">
+                        <input type="text" class="form-control" [(ngModel)]="signUpForm.name" placeholder="Name">
+                        <br>
+                        <input type="email" class="form-control" [(ngModel)]="signUpForm.email" placeholder="Email Id">
+                        <br>
+                        <input type="number" class="form-control" [(ngModel)]="signUpForm.phone" placeholder="Phone Number">
+                        <br>
+                        <input type="password" class="form-control" [(ngModel)]="signUpForm.password" placeholder="New Password">
+                        <br>
+                        <div style="text-align:center">
+                            <button class="btn sbmBtn" (click)="signUp()">Submit</button>
+                            <br>
+                            <a (click)="loginCheck = true"> Already have Account? </a>
+                            <p>{{message}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,22 @@
+<ul class="friend-list">
+    <li class="bounceInDown" [class.active]="i%2==0" *ngFor="let sp of serviceProviders;let i= index">
+        <a (click)="toProfile(sp)" class="clearfix">
+            <img style="margin:3px 6px 3px 3px" [src]="(sp.profile_pic && sp.profile_pic!='') ? sp.profile_pic : 'https://bootdey.com/img/Content/user_1.jpg'"
+                alt="" class="img-circle">
+            <div class="friend-name">
+                <strong>{{sp.name}}</strong>
+            </div>
+            <div class="last-message text-muted">{{sp.phone}}</div>
+            <small class="time text-muted" *ngIf="sp.services[0].ratings.length == 0">Not Rated Yet</small>
+            <span class="time text-muted" *ngIf="sp.services[0].ratings.length != 0">
+                    <span *ngFor="let star of stars; let i = index">
+                        <i style="color:#ffc004" [class]="(sp.rating/sp.services[0].ratings.length) - i > 0 ? 'fas fa-star' : 'far fa-star'"></i>
+                    </span>{{sp.rating/sp.services[0].ratings.length }}
+                </span>
+            <span *ngIf="sp.services[0].ratings.length != 0" class="chat-alert label label-danger">( {{sp.services[0].ratings.length}} )</span>
+        </a>
+    </li>
+</ul>
+<div style="text-align:center" *ngIf="serviceProviders.length==0 && !ls.Loader">
+    No Providers Available Right Now
+</div>

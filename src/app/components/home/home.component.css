@@ -1,0 +1,15 @@
+.category-container{
+    display : grid;
+    grid-template-columns: 33% 33% 33%;
+    grid-gap: 5px;
+    margin : 10px
+}
+
+.item{
+    text-align:center;
+    color : #09203f;
+    padding : 25px;
+    background-color: #e8e0e0;
+    text-decoration:  none;
+    height: 100%;
+}

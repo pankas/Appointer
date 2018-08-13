@@ -1,0 +1,159 @@
+<div *ngIf="user && user._id" class="back">
+    <br>
+    <span (click)="openModal('#picUpload')" style="float:right;margin-right:10px;">
+        <i style="color:white" class="fas fa-pencil-alt"></i>
+    </span>
+    <div style="text-align:  center;">
+        <img style="border-radius: 50%;height: 130px;width: 130px;" [src]=" user.profile_pic || '/assets/user-icon.jpg'">
+    </div>
+    <div style="text-align:center;margin: 10px;color:white">
+        <span *ngIf="noOfRatings == 0">
+            Not Rated Yet
+        </span>
+        <span *ngIf="noOfRatings != 0">
+            <span *ngFor="let star of stars; let i = index">
+                <i style="color:#ffc004" [class]="overallUserRating - i > 0 ? 'fas fa-star' : 'far fa-star'"></i>
+            </span>
+            <span>{{overallUserRating}}</span>
+            <span> ( {{ noOfRatings }} ) </span>
+        </span>
+    </div>
+    <div *ngIf="enableChat" style="text-align:  center;">
+        <button (click)="toChat()" class="btn"> Message </button>
+    </div>
+    <br>
+    <br>
+    <h2 style="color:white;margin-bottom:5px;margin-left:15px">Personal Information</h2>
+    <hr style="color:white;margin-left:15px" class="style-one">
+    <div style="margin-left:25px">
+        <span style="color:white;font-size: 20px;" class="fas fa-user"></span>
+        <span style="font-size: 20px;color:white;margin-left:15px">{{user.name}}</span>
+        <br>
+        <span style="color:white;font-size: 20px;" class="fas fa-envelope"></span>
+        <span style="color:white;font-size: 20px;margin-left:15px ">{{user.email}}
+            <i style="color:rgb(39, 184, 39);margin:5px" class="fas fa-check-circle"></i>
+        </span>
+        <br>
+        <span style="color:white;font-size: 20px;" class="fas fa-phone"></span>
+        <span style="color:white; margin-left:15px;font-size: 20px;">{{user.phone}}
+            <i style="color:red;margin:5px" class="far fa-times-circle"></i>
+        </span>
+    </div>
+    <br>
+    <br>
+    <h2 style="color:white;margin-bottom:5px;margin-left:15px">Services
+        <span *ngIf="!enableChat" (click)="openModal('#addService')">
+            <i class="fas fa-plus" style="color:white;float:right;font-size:15px;margin-right:10px"></i>
+        </span>
+    </h2>
+    <hr style="color:white;margin-left:15px" class="style-one">
+    <h4 *ngIf="user && user.services && user.services.length == 0" style="color:white;text-align:center">
+        You Are Not Providing Any Service
+    </h4>
+    <div *ngIf="user && user.services && user.services.length > 0">
+        <div class="card border-light" *ngFor="let service of user.services;let s = index" style="margin:10px">
+            <div class="card-header">{{service.service}}
+                <span style="float:right" (click)="removeService(service.service,s)" *ngIf="!enableChat">
+                    <i style="color:red"  class="far fa-trash-alt"></i>
+                </span>
+            </div>
+
+            <div class="card-body">
+                <span *ngIf="service.noOfRatings == 0">
+                    Not Rated Yet
+                </span>
+                <span *ngIf="service.noOfRatings != 0">
+                    <span *ngFor="let star of stars; let i = index">
+                        <i style="color:#ffc004" [class]="(service.overallRating/service.noOfRatings) - i > 0 ? 'fas fa-star' : 'far fa-star'"></i>
+                    </span>
+                    <span>{{service.overallRating/service.noOfRatings}}</span>
+                    <span> ( {{ service.noOfRatings }} ) </span>
+                </span>
+                <!-- <h5 class="card-title">Light card title</h5> -->
+                <p class="card-text">{{service.description}}</p>
+            </div>
+            <div class="card-footer" style="text-align:center" (click)="getReviews(service.service);ls.Loader=true;" >View Reviews</div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="addService" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form #addServiceForm="ngForm">
+                    <select class="form-control" name="service" required ngModel id="">
+                        <option selected="true" disabled="true" value="">Select Service</option>
+                        <option [ngValue]="service" *ngFor="let service of services">
+                            {{ service.title }}
+                        </option>
+                    </select>
+                    <br>
+                    <textarea name="description" ngModel id="" class="form-control" required placeholder="Describe Your Service Here"></textarea>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" [disabled]="addServiceForm.invalid" (click)="addService(addServiceForm)">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="showRatings" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Reviews</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div *ngFor="let review of reviews">
+            <span *ngFor="let star of stars; let i = index">
+                <i style="color:#ffc004" [class]="review.rating - i > 0 ? 'fas fa-star' : 'far fa-star'"></i>
+            </span>
+            <span>( {{review.rating}} )</span>
+            <br>
+            <p>{{ review.description }}</p>
+            
+            <span style="font-size:10px;">{{ review.name }} <br> {{ review.createdAt | date}}</span>
+            <hr>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="picUpload" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalCenterTitle">Change Profile Pic</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form #profilePic="ngForm">
+          <input required type="file" class="form-control" (change)="onSelect($event)" name="file" ngModel>
+        </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button"  class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" [disabled]="profilePic.invalid" data-dismiss="modal" (click)="setPic(profilePic)"> Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>

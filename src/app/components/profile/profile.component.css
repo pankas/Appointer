@@ -1,0 +1,14 @@
+.back{
+    background : linear-gradient( to bottom , #09203f, #1d4a6d, #09203f);
+    min-height : 100%;
+    /* text-align:  center; */
+  }
+
+  hr.style-one {
+    border: 0;
+    height: 1px;
+    background: white;
+    background-image: linear-gradient(to right, #ccc, #09203f);
+    margin-top: 0px;
+}
+

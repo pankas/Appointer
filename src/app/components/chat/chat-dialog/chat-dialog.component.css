@@ -1,0 +1,98 @@
+h1{
+	display:block;
+	margin:0 auto;
+}
+
+
+
+
+.from{
+	width:50%;
+	clear: both;
+	padding:2px;
+	overflow:auto;
+	color:white;
+        /*bottom:0;*/
+        /*max-height: 400px;*/
+        font-size: 10px;
+        /*border:2px solid grey;*/
+        background: #F0C27B;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #4B1248, #F0C27B);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #4B1248, #F0C27B); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+
+	}
+
+	.to{
+		
+        /*bottom:0;*/
+    	position: relative;
+	float:right;
+	width:50%;
+	padding:2px;
+	clear:both;
+	font-size: 10px;
+	color:white !important;
+	/*border:2px solid blue;*/
+       background: #00c6ff;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #0072ff, #00c6ff);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #0072ff, #00c6ff); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+	}
+
+	.chat{
+		width:70%;
+		position: relative;
+		bottom:0 !important;
+		margin:auto;
+	}
+
+	.chat input{
+		width:90%;
+		border-radius: 5px;
+	}
+
+	#botbtn{
+		z-index:2000;
+		position:absolute;
+		bottom:0;
+		right:0;
+	}
+
+	#close{
+		float:right;
+	}
+#header{
+	width:100%;
+}
+.message{
+	border-radius: 2px;
+	margin-bottom: 8px;
+	margin-top: 3px;
+}
+	::-webkit-scrollbar { 
+    display: none; 
+}
+.chatmsg{
+
+	height:80%;
+	width:80%;
+	margin:auto;
+	overflow-y: scroll;
+}
+
+#a{
+	width:10px;
+	height:10px;
+}
+ .headerLine{
+ 	width:80%;
+ 	height:12px;
+ 	margin:auto;
+ 	background: #F7971E;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #FFD200, #F7971E);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #FFD200, #F7971E); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+
+
+ }

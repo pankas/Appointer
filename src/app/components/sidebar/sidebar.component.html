@@ -1,0 +1,71 @@
+<div id="sidebar" [class.open-sidebar]="open" (swipeleft)="swipe('swipeleft')" (swiperight)="swipe('swiperight')">
+    <div style="background: linear-gradient(to bottom , #09203f, #1d4a6d );padding:12px;">
+        <div style="padding:0px 12px 12px 12px;text-align:center;">
+            <!-- <span style="color:white;vertical-align:super;font-size:20px">Appointer </span> -->
+        </div>
+        <img style="border-radius: 50%;height: 75px;width: 75px;" (click)="toProfile()" [src]="local.profile_pic && local.profile_pic != '' ? local.profile_pic : '/assets/user-icon.jpg'">
+        <span style="color:white;vertical-align: top;">{{local.name}}</span>
+    </div>
+    <div  style="height:100%;overflow: auto;" (swiperight)="swipe('swiperight')"  (swipeleft)="swipe('swipeleft')">
+        <ul class="list-group" (click)="open=false;" (swipeleft)="swipe('swipeleft')" style="background-color:white;">
+            <li class="sidebar-item">
+                <a routerLink="/">
+                    <i class="fas fa-home" style="color:#09203f"></i>
+                    <span class="list-item-text"> Home </span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a (click)="toProfile()">
+                    <i class="fas fa-user" style="color:#09203f"></i>
+                    <span class="list-item-text"> Profile </span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a routerLink="/messaging">
+                    <i class="fas fa-envelope" style="color:#09203f"></i>
+                    <span class="list-item-text"> Messages </span>
+                </a>
+            </li>
+            <!-- <li class="sidebar-item">
+                <a (click)="fun($event)">
+                    <i class="fas fa-sitemap" style="color:#09203f"></i>
+                    <span class="list-item-text"> Services </span>
+                    <i class="fas fa-chevron-down" style="float:right;color:#09203f"></i>
+                </a>
+            </li>
+            <span *ngIf="showSublist">
+            <li class="sidebar-item inner" *ngFor="let sub of subList">
+                <a [routerLink]="'category/'+sub.route">
+                    <i [class]="sub.icon" style="color:#09203f"></i>
+                    <span class="list-item-text"> {{sub.title}} </span>
+                </a>
+            </li>
+            </span> -->
+
+            <li class="sidebar-item" style="bottom:0">
+                <a routerLink="/feedback">
+                    <i class="fas fa-paper-plane" style="color:#09203f"></i>
+                    <span class="list-item-text"> Send Feedback </span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a routerLink="/privacy">
+                    <i class="fas fa-question-circle" style="color:#09203f"></i>
+                    <span class="list-item-text"> Privacy Policy </span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a routerLink="/chat">
+                    <i class="fas fa-question-circle" style="color:#09203f"></i>
+                    <span class="list-item-text"> Help </span>
+                </a>
+            </li>
+            <li class="sidebar-item" *ngIf="local['appointer-token']" >
+                <a (click)="logout()">
+                    <i class="fas fa-sign-out-alt" style="color:#09203f"></i>
+                    <span class="list-item-text"> Logout</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>

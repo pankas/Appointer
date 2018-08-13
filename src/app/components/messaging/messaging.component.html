@@ -1,0 +1,19 @@
+<ul class="friend-list" *ngIf="local.id">
+    <li class="bounceInDown" [class.active]="i%2==0" *ngFor="let conversation of conversations;let i= index" >
+        <a (click)="toChat(i)" class="clearfix">
+            <img style="margin:3px 6px 3px 3px" [src]="conversation.users[0].profile_pic ? conversation.users[0].profile_pic : 'https://bootdey.com/img/Content/user_1.jpg'" alt="" class="img-circle">
+            <div class="friend-name">	
+                <strong>{{conversation.users[0].name}}</strong>
+            </div>
+            <div class="last-message text-muted">{{conversation.latest.message}}</div>
+            <small class="time text-muted">{{conversation.latest.timestamp | date}}</small>
+            <small class="chat-alert label label-danger">1</small>
+        </a>
+    </li>
+</ul>
+
+<div style="text-align:center" *ngIf="!local.id">
+    <br>
+    <h4 style="text-align:center">You Have To Login First!</h4>
+    <a class="btn" style="margin:auto" routerLink="/login">Login</a>
+</div>
